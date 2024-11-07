@@ -61,11 +61,7 @@ body {
 }
 
 .img {
-    width: 5%;
-}
-
-.img-1 {
-    width: 9%;
+    width: 14%;
 }
 
 /* ----------------- MAIN CLASSES ----------------- */
@@ -252,6 +248,14 @@ body {
 /* ----------------- MEDIA QUERIES ----------------- */
 /* --------- FOR TABLET --------- */
 @media (min-width: 600px) {
+    .img {
+        width: 5%;
+    }
+
+    .img-1 {
+        width: 9%;
+    }
+
     .section {
         width: 80%;
     }
