@@ -1,0 +1,334 @@
+/* ----------------- GOOGLE FONT IMPORTS ----------------- */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Ubuntu:wght@400;500;700&display=swap');
+
+/* ----------------- CSS RESETS ----------------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--gray-100);
+    font-family: var(--ff-ubuntu);
+    position: relative;
+}
+
+
+/* ----------------- CSS VARIABLES ----------------- */
+:root {
+    /* ----- colors ----- */
+    --soft-white: #f8f8f5;
+
+    --gray-100: #f3f3e3;
+
+    --dark-100: #2a2828;
+    --dark-200: #555D50;
+
+    --blue-100: #112a46;
+    --blue-200: #1b426f;
+
+    --green-100: #03c03c;
+    --green-200: #25D366;
+    --green-300: #128C7E;
+    --green-400: #D0F0C0;
+
+    --red-100: #FFCBC5;
+
+    /* ----- font family ----- */
+    --ff-ubuntu: "Ubuntu", sans-serif;
+    --ff-nanum: "Nanum Gothic", sans-serif;
+}
+
+/* ----------------- UTILITY CLASSES ----------------- */
+.bold {
+    font-weight: bold;
+}
+
+/* ----------------- HEADER CLASSES ----------------- */
+.header {
+    padding-block: 0.65rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 0.5rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 2px 4px rgb(209, 205, 205);
+}
+
+.img {
+    width: 5%;
+}
+
+.img-1 {
+    width: 9%;
+}
+
+/* ----------------- MAIN CLASSES ----------------- */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 65vh;
+}
+
+.section {
+    width: 90%;
+    margin: 1.55rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.section__title {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: var(--blue-100);
+    font-family: var(--ff-ubuntu);
+    max-width: 100%;
+    margin-top: 1.2rem;
+}
+
+.section__text {
+    font-size: 0.95rem;
+    color: var(--dark-100);
+    margin-block: 0.85rem;
+    font-family: var(--ff-nanum);
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.section__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+#shopping-input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 0.625rem;
+    font-size: 1.125rem;
+    color: var(--soft-white);
+    line-height: 1.5;
+    white-space: pre-wrap;
+    background-color: var(--dark-200);
+}
+
+
+#shopping-input::placeholder {
+    color: rgb(240, 234, 234);
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+#shopping-input:focus {
+    outline: 2px solid var(--green-100);
+    background-color: var(--green-400);
+    color: var(--dark-100);
+}
+
+#shopping-input:focus::placeholder {
+    color: #999999;
+}
+
+.submit-btn {
+    width: 100%;
+    border: none;
+    padding: 0.75rem;
+    background-color: var(--blue-100);
+    color: white;
+    font-size: 1rem;
+    border-radius: 0.625rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.submit-btn:active {
+    transform: scale(0.95);
+}
+
+.submit-btn:hover {
+    background-color: var(--blue-200);
+}
+
+#share-button {
+    width: 55%;
+    padding-block: 1rem;
+    align-self: center;
+    background-color: var(--green-200);
+    color: white;
+    font-size: 1rem;
+    border-radius: 0.625rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+    margin-block: 2rem;
+}
+
+#share-button:hover {
+    background-color: var(--green-300);
+}
+
+#share-button:active {
+    transform: scale(0.95);
+}
+
+.error-message {
+    width: 250px;
+    padding: 1rem;
+    background-color: var(--red-100);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #DE1701;
+    display: none;
+    gap: 0.35rem;
+    justify-content: center;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fadeIn 4s ease forwards;
+}
+
+
+/* ----------------- SECTION LIST STYLES ----------------- */
+.section__list {
+    list-style-position: inside;
+    text-align: left;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    padding: 1rem;
+    color: var(--dark-100);
+    background-color: var(--soft-white);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-transform: capitalize;
+}
+
+.section__list li {
+    padding: 0.25rem 0;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.section__list li:last-child {
+    border-bottom: none;
+}
+
+/* ----------------- FOOTER CLASSES ----------------- */
+.footer {
+    padding: 1rem 0.5rem;
+    background-color: var(--dark-100);
+    color: var(--gray-100);
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    font-family: var(--ff-nanum);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer__contact__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-block: 0.65rem;
+}
+
+/* ----------------- MEDIA QUERIES ----------------- */
+/* --------- FOR TABLET --------- */
+@media (min-width: 600px) {
+    .section {
+        width: 80%;
+    }
+
+    .section__title {
+        font-size: 2rem;
+        max-width: 700px;
+    }
+
+    .section__text {
+        font-size: 1.5rem;
+    }
+
+    .section__form {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section__list,
+    .section__form {
+        max-width: 80%;
+    }
+
+    #shopping-input {
+        max-width: 75%;
+    }
+
+    #shopping-input::placeholder {
+        font-size: 1rem;
+    }
+
+    #share-button {
+        width: 26%;
+    }
+
+    .submit-btn {
+        width: 25%;
+        font-size: 1.25rem;
+        align-self: stretch;
+    }
+
+    .error-message {
+        width: 300px;
+        font-size: 1rem;
+    }
+
+    .footer {
+        font-size: 1rem;
+    }
+
+    .footer__contact__info {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
+/* -----------------  ANIMATIONS ----------------- */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        top: 0;
+    }
+
+    40% {
+        opacity: 1;
+        top: 80px;
+    }
+
+    85% {
+        opacity: 1;
+        top: 80px;
+    }
+
+    100% {
+        opacity: 0;
+        top: 0;
+    }
+}
