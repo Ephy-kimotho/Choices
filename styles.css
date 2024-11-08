@@ -37,8 +37,11 @@ body {
     --green-200: #25D366;
     --green-300: #128C7E;
     --green-400: #D0F0C0;
+    --green-500: #028d2c;
 
     --red-100: #FFCBC5;
+    --red-200: #DE1701;
+    ;
 
     /* ----- font family ----- */
     --ff-ubuntu: "Ubuntu", sans-serif;
@@ -188,7 +191,7 @@ body {
     border-radius: 5px;
     font-weight: bold;
     font-size: 0.8rem;
-    color: #DE1701;
+    color: var(--red-200);
     display: none;
     gap: 0.35rem;
     justify-content: center;
@@ -223,6 +226,88 @@ body {
 
 .section__list li:last-child {
     border-bottom: none;
+}
+
+/* ----------------- MODAL AND INFO FORM LIST STYLES ----------------- */
+
+.modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoForm {
+    background-color: var(--soft-white);
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    width: 90%;
+    max-width: 600px;
+}
+
+.form-group {
+    display: grid;
+    gap: 0.25rem;
+    font-size: 1.125rem;
+    width: 100%;
+}
+
+.form-group:nth-of-type(2) {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-group label {
+    letter-spacing: 1.1px;
+    font-family: var(--ff-ubuntu);
+    font-weight: 500;
+    width: 100%;
+}
+
+.form-group input {
+    padding: 0.65rem 0 0.65rem 0.8rem;
+    border: none;
+    outline: 2px solid #6e6e6e;
+    border-radius: 5px;
+    font-size: 1.094rem;
+    width: 100%;
+}
+
+.errorBox {
+    padding: 0.25rem;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--red-200);
+}
+
+.ok-btn-container {
+    text-align: center;
+}
+
+.info-form-ok-btn {
+    padding: 0.8rem 2.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--green-500);
+    color: var(--soft-white);
+    font-weight: bold;
+    font-size: calc(1rem, 0.6rem + 1lvh, 1.8rem);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+}
+
+.info-form-ok-btn:hover {
+    background-color: var(--green-100)
+}
+
+.info-form-ok-btn:active {
+    transform: scale(0.95);
 }
 
 /* ----------------- FOOTER CLASSES ----------------- */
@@ -311,6 +396,12 @@ body {
         flex-direction: row;
         justify-content: center;
         gap: 1rem;
+    }
+}
+
+@media(min-width: 992px) {
+    #share-button {
+        width: 16%;
     }
 }
 

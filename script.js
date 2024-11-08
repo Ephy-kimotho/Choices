@@ -1,19 +1,26 @@
 /* ------------------- SELECTING DOM ELEMENTS ------------------- */
 const input = document.getElementById("shopping-input");
 const shareBtn = document.getElementById("share-button");
-const form = document.forms[0];
+const errorBoxName = document.getElementById("errorBoxName");
+const errorBoxLocation = document.getElementById("errorBoxLocation");
 const list = document.querySelector(".section__list");
+const modal = document.querySelector(".modal");
+const form = document.forms[0];
+const infoForm = document.forms[1];
+const nameInput = infoForm.querySelector("#nameInput");
+const locationInput = infoForm.querySelector("#locationInput");
 
 /* ------------------- EVENT LISTENERS ------------------- */
 
 input.addEventListener("focus", getListItems);
 form.addEventListener("submit", addListItems);
-shareBtn.addEventListener("click", shareToWhatsApp);
+shareBtn.addEventListener("click", verifyShare);
 document.addEventListener("DOMContentLoaded", loadItemsFromLocalStorage);
+infoForm.addEventListener("submit", handleSubmit);
 
 /* ------------------- UTILITY FUNCTIONS ------------------- */
-function clearInput() {
-  input.value = "";
+function clearInput(element) {
+  element.value = "";
 }
 
 function clearList() {
@@ -22,6 +29,27 @@ function clearList() {
 
 function listItemsExists() {
   return list.children.length > 0;
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const isFormValid = validateInputs();
+
+  if (isFormValid) {
+    const name = nameInput.value.trim();
+    const location = locationInput.value.trim();
+    clearInput(nameInput);
+    clearInput(locationInput);
+    modal.style.display = "none";
+    shareToWhatsApp(name, location);
+  }
+}
+
+function resetErrorBoxes() {
+  errorBoxName.textContent = "";
+  errorBoxLocation.textContent = "";
+  nameInput.style.outlineColor = "#6e6e6e";
+  locationInput.style.outlineColor = "#6e6e6e";
 }
 
 /* ------------------- UI FUNCTIONS ------------------- */
@@ -41,7 +69,7 @@ function addListItems(e) {
   e.preventDefault();
 
   let items = input.value.trim();
-  clearInput();
+  clearInput(input);
 
   items = items.split("\n");
 
@@ -76,7 +104,7 @@ function displayMessage() {
 }
 displayMessage();
 
-function shareToWhatsApp() {
+function verifyShare() {
   let listItems = Array.from(list.children);
 
   if (listItems[0].classList.contains("no-items-message")) {
@@ -88,12 +116,56 @@ function shareToWhatsApp() {
     }, 4500);
 
     return;
+  } else {
+    modal.style.display = "flex";
+  }
+}
+
+function validateInputs() {
+  resetErrorBoxes()
+
+  const name = nameInput.value.trim();
+  const location = locationInput.value.trim();
+  let isValid = true;
+
+  if (name === "") {
+    errorBoxName.textContent = "Required.";
+    nameInput.style.outlineColor = "#DE1701";
+    isValid = false;
+  } else if (name.length < 3) {
+    errorBoxName.textContent = "Name is too short.";
+    nameInput.style.outlineColor = "#DE1701";
+    isValid = false;
+  } else {
+    errorBoxName.textContent = "";
+    nameInput.style.outlineColor = "#6e6e6e";
   }
 
+  if (location === "") {
+    errorBoxLocation.textContent = "Required.";
+    locationInput.style.outlineColor = "#DE1701";
+    isValid = false;
+  } else if (location.length < 4) {
+    errorBoxLocation.textContent = "Must 4 characters or more";
+    locationInput.style.outlineColor = "#DE1701";
+    isValid = false;
+  } else {
+    errorBoxLocation.textContent = "";
+    locationInput.style.outlineColor = "#6e6e6e";
+  }
+
+  return isValid;
+}
+
+function shareToWhatsApp(name, location) {
+  let listItems = Array.from(list.children);
   listItems = listItems.map((item) => item.textContent).join("\n");
 
   const phoneNumber = "254715240982";
-  const message = encodeURIComponent(`Shopping List:\n${listItems}`);
+  const message = encodeURIComponent(
+    `Shopping List for ${name} to be delivered at ${location}:\n${listItems}`
+  );
+
   const whatsAppLink = `https://wa.me/${phoneNumber}?text=${message}`;
 
   window.open(whatsAppLink, "_blank");

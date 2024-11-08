@@ -7,7 +7,7 @@
     <title>Choices</title>
     <link rel="shortcut icon" href="./Assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./styles.css">
-    <script src="./script.js" defer></script>
+    <script src="./script.js" type="module" defer></script>
     <script src="https://kit.fontawesome.com/c3dd8d1c05.js" crossorigin="anonymous"></script>
 </head>
 
@@ -39,7 +39,29 @@
             <p>Can't share an empty list.</p>
         </div>
     </main>
-    
+
+    <div class="modal">
+        <form class="infoForm">
+            <div class="form-group">
+                <label for="nameInput">Name: </label>
+                <input type="text" name="name" id="nameInput" placeholder="Enter your name.">
+                <p class="errorBox" id="errorBoxName"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="locationInput">Location: </label>
+                <input type="text" name="location" id="locationInput" placeholder="Enter your location.">
+                <p class="errorBox" id="errorBoxLocation"></p>
+            </div>
+
+            <div class="ok-btn-container">
+                <button type="submit" class="info-form-ok-btn">
+                    Ok
+                </button>
+            </div>
+        </form>
+    </div>
+
     <footer class="footer">
         <p class="footer__title">Automate your shopping with &commat;Choices. </p>
         <div class="footer__contact__info">
